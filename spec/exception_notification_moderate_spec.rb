@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe ExceptionNotifier do
   describe '.notify_exception' do
+    before do
+      ExceptionNotificationModerate.configure do |config|
+        config.redis_host = 'localhost'
+      end
+    end
+
     subject { ExceptionNotifier.notify_exception(StandardError.new, {}) }
     it 'notify exception' do
       expect(subject).to be_truthy
