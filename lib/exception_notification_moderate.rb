@@ -6,4 +6,5 @@ require 'exception_notification_moderate/exception_notifier'
 module ExceptionNotificationModerate
   include ActiveSupport::Configurable
   config_accessor :redis_host
+  config_accessor :logger
 end

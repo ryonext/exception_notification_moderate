@@ -5,6 +5,7 @@ describe ExceptionNotifier do
     before do
       ExceptionNotificationModerate.configure do |config|
         config.redis_host = 'localhost'
+        config.logger = Logger.new(STDOUT)
       end
     end
 
@@ -25,6 +26,24 @@ describe ExceptionNotifier do
         ExceptionNotifier.notify_exception(StandardError.new, {})
         Timecop.travel(Time.now + 60)
         expect(subject).to be_truthy
+      end
+    end
+
+    context 'It cannot connect to Redis when setting params' do
+      before do
+        allow_any_instance_of(MockRedis).to receive(:set).and_raise(Redis::CannotConnectError)
+      end
+      it 'does not raise error' do
+        expect { subject }.not_to raise_error
+      end
+    end
+
+    context 'It cannot connect to Redis when getting params' do
+      before do
+        allow_any_instance_of(MockRedis).to receive(:get).and_raise(Redis::CannotConnectError)
+      end
+      it 'does not raise error' do
+        expect { subject }.not_to raise_error
       end
     end
   end

@@ -7,20 +7,27 @@ module ExceptionNotifier
 
     def notify_exception(exception, options={})
       ex_key = exception_key(exception)
-      val = redis.get(ex_key)
-      # 実行チェックするような処理
+      begin
+        val = redis.get(ex_key)
+      rescue Redis::CannotConnectError
+      end
       if val && val.to_i + 60 > Time.now.to_i
-        # ログに書いて抜ける
+        # Write log and return.
+        ExceptionNotificationModerate.logger.info(exception)
         return false
       end
-      redis.set(ex_key, Time.now.to_i)
+
+      begin
+        redis.set(ex_key, Time.now.to_i)
+      rescue Redis::CannotConnectError
+      end
       original_notify_exception(exception, options)
     end
 
     private
 
     def exception_key(exception)
-      ex_key = "#{exception.to_s}_#{exception.message}"
+      "#{exception.to_s}_#{exception.message}"
     end
 
     def redis
