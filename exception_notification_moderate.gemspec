@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = ExceptionNotificationModerate::VERSION
   spec.authors       = ["ryonext"]
   spec.email         = ["ryonext.s@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Notify same exception moderate.}
+  spec.description   = %q{When system raises same errors in short time, it blocks second and later notifications}
+  spec.homepage      = "http://github.com/ryonext/exception_notification_moderate"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
