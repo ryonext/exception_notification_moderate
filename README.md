@@ -1,6 +1,7 @@
 # ExceptionNotificationModerate
 
-TODO: Write a gem description
+This gem blocks same error notifications that is sended by ExceptionNotification in short time.
+
 
 ## Installation
 
@@ -20,11 +21,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+* Set Redis Host
+* Set logger class
+
+```
+ExceptionNotificationModerate.redis_host = 'http://localhost:6379'
+ExceptionNotificationModerate.logger = Logger.new('/tmp/app.log')
+```
+
+
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/exception_notification_moderate/fork )
+1. Fork it ( https://github.com/ryonext/exception_notification_moderate/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
