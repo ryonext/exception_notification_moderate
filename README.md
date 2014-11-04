@@ -27,11 +27,11 @@ Or install it yourself as:
 * Set logger class
 
 ```
-ExceptionNotificationModerate.redis_host = 'http://localhost:6379'
-ExceptionNotificationModerate.logger = Logger.new('/tmp/app.log')
+ExceptionNotificationModerate.configure do |config|
+  config.redis_host = 'localhost:6379'
+  config.logger = Logger.new('./log/ex_notification.log')
+end
 ```
-
-
 
 ## Contributing
 
