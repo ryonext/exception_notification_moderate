@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ryonext/exception_notification_moderate.svg?branch=master)](https://travis-ci.org/ryonext/exception_notification_moderate)
+
 # ExceptionNotificationModerate
 
 This gem blocks same error notifications that is sended by ExceptionNotification in short time.
