@@ -28,7 +28,7 @@ Or install it yourself as:
 
 ```
 ExceptionNotificationModerate.configure do |config|
-  config.redis_host = 'localhost:6379'
+  config.redis_host = 'localhost'
   config.logger = Logger.new('./log/ex_notification.log')
 end
 ```
