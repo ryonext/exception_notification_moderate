@@ -31,7 +31,11 @@ module ExceptionNotifier
     end
 
     def redis
-      Redis.new(host: ExceptionNotificationModerate.redis_host)
+      if ExceptionNotificationModerate.redis_host
+        Redis.new(host: ExceptionNotificationModerate.redis_host)
+      elsif ExceptionNotificationModerate.redis_url
+        Redis.new(host: ExceptionNotificationModerate.redis_url)
+      end
     end
   end
 end
